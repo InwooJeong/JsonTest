@@ -10,13 +10,23 @@
 	response.setDateHeader("Expires", 0);
 
 	request.setCharacterEncoding("UTF-8");
-
+	
+/* 	String user_id = "";
+	
+	if(request.getParameter("user_id") == null){
+		user_id = "";
+	}else{
+		user_id = request.getParameter("user_id").trim();
+	} */
+	
+	String user_id = (request.getParameter("user_id")==null)? "" : request.getParameter("user_id").trim();
+	
 	QueryBean.getConnection();
 
 	ArrayList resArr = new ArrayList();
 
 	try {
-		resArr = QueryBean.getUserInfo();
+		resArr = QueryBean.getUserInfo(user_id);
 	} catch (SQLException e) {
 		out.print(e.toString());
 	} finally {

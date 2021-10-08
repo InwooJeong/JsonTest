@@ -71,16 +71,20 @@ public class QueryBean {
 		}
 	}
 
-	public ArrayList getUserInfo() throws Exception {
+	public ArrayList getUserInfo(String user_id) throws Exception {
 
 		StringBuffer sb = new StringBuffer();
 
-		sb.append("SELECT");
+		sb.append("SELECT ");
 		sb.append("   U_ID, U_NAME, U_PHONE, U_GRADE, WRITE_TIME ");
 		sb.append(" FROM ");
-		sb.append("   USER_INFO_SAMPLE");
-		sb.append(" ORDER BY");
-		sb.append("     WRITE_TIME");
+		sb.append("   USER_INFO_SAMPLE ");
+		
+		sb.append(" WHERE ");
+		sb.append("   U_ID LIKE '%"+user_id+"%' ");
+		
+		sb.append(" ORDER BY ");
+		sb.append("     WRITE_TIME ");
 
 		rs = stmt.executeQuery(sb.toString());
 
